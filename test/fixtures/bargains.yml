@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: one
+  product_id: one
+  actual_amount: 1
+  proposed_amount: 1
+  status: MyString
+
+two:
+  user_id: two
+  product_id: two
+  actual_amount: 1
+  proposed_amount: 1
+  status: MyString

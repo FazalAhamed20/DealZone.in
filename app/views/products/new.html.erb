@@ -1,0 +1,22 @@
+
+<h1>Add your product</h1>
+
+<%= form_with model: @product do |f|%>
+<div>
+    <%= f.label :name, "Enter the product name"%>
+    <br>
+      <%= f.text_field :name ,placeholder:"Enter your product name",required:true%>
+      <br>
+      <%= f.label :description, "Enter the products description"%>
+      <br>
+      <%= f.text_area :description ,placeholder:"Enter your products description",required:true%>
+      <br>
+      <%= f.label :amount, "Enter the products rate"%>
+      <br>
+      <%= f.text_field :amount ,placeholder:"Enter your products amount",required:true%>
+      <br>
+      <%= f.submit "Add Product"%>
+
+</div>
+
+<%end%>
