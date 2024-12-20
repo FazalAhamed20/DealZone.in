@@ -1,5 +1,5 @@
 class SignupController < ApplicationController
-
+  before_action :redirect_if_logged_in, only: [:new, :create]
   def new
     @user = User.new()
 
@@ -24,5 +24,9 @@ class SignupController < ApplicationController
   def params_validate
     params.permit(:name, :email, :password)
   end
-  
+  def redirect_if_logged_in
+    if session[:user_id].present?
+      redirect_to products_path, notice: "Already logged in"
+    end
+  end
 end

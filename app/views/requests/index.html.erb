@@ -1,12 +1,23 @@
-<h1>Requested Products</h1>
- <p>Product name: <%=@product.name%></p>
- <p>Actual Amount: <%=@product.amount%></p>
+
+
+<div>
+    <h1>Requested Products</h1>
+    <div class="product-grid">
+        <div class="product-card">
+ <p>Product name: <%=@request.product.name%></p>
+ <p>Actual Amount: <%=@request.product.amount%></p>
  <p>Requested Amount: <%=@request.request_amount%></p>
- <p>Requested by: <%=@user.name%></p>
+ <p>Requested by: <%=@request.user.name%></p>
+  
+    
+ <button> <%= link_to "Accept", product_request_path(@request.product.id, @request.id, commit: "Accepted"), data: { turbo_method: :patch,turbo_confirm: "Are you sure you want to accept this request?" } %></button>
+ <button><%= link_to "Reject", product_request_path(@request.product.id, @request.id, commit: "Rejected"), data: { turbo_method: :patch,turbo_confirm: "Are you sure you want to accept this request?" } %></button>
+       </div>
+       </div>
 
- <%= link_to "Accept", product_request_path(@product.id, @request.id, commit: "Accepted"), data: { turbo_method: :patch,turbo_confirm: "Are you sure you want to accept this request?" } %>
+</div>
 
- <%= link_to "Reject", product_request_path(@product.id, @request.id, commit: "Rejected"), data: { turbo_method: :patch,turbo_confirm: "Are you sure you want to accept this request?" } %>
+
 
 
 

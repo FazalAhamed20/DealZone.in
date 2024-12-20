@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :logged_in 
   def index
     @products = Product.where.not(user_id: current_user_id)
     @requests = Request.all
@@ -41,10 +42,13 @@ class ProductsController < ApplicationController
 def destroy
   puts "--------",params[:id]
   @product = Product.find(params[:id])
-    
-    @product.destroy
+  @product.requests.destroy_all
+
+  if @product.destroy
     redirect_to my_product_products_path, notice: "Product was successfully deleted."
 
+  end
+    
 end
 
   

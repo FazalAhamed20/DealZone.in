@@ -1,0 +1,21 @@
+
+
+<div>
+    <h1>Your requested products</h1>
+<% if @requests.any?%>
+<div class="product-grid">
+<% @requests.each do |request|%>
+<div class="product-card">
+<p>Product Name: <%= request.product.name%> </p>
+<p>Product Amount: <%= request.product.amount%> </p>
+<p>Your bid: <%= request.request_amount%></p>
+<p class="higlight">Status: <%= request.status%></p>
+</div>
+<%end%>
+</div>
+<%else%>
+<p>No requested products</p>
+
+<%end%>
+
+</div>

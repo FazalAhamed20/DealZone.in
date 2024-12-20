@@ -1,19 +1,22 @@
 Rails.application.routes.draw do
  
-  
 
-
-
-
-  
   resources :signup, only: [  :new, :create ]
   resources :login, only: [ :new, :create ]
+
   resources :products do
   collection do
     get :my_product
   end
-  resources :requests, only: [ :new, :create, :index, :update ]
+  resources :requests, only: [ :new, :create, :index, :update ] 
+   
 end
+
+get '/requested_products', to: 'requests#requested_products'
+
+
+
+
 
 
 

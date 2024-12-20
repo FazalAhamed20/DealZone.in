@@ -1,19 +1,36 @@
-<h1>Product page</h1>
 
+
+
+<div>
+    <h1>Products</h1>
+    <button> <%= link_to "Logout", "logout",method: "get" %></button>
+    <button><%= link_to "My Products", my_product_products_path %></button>
+
+
+<% if @products.any?%>
+<div class="product-grid">
 <%@products.each do |product|%>
-<p><%= product.name%></p>
-<p><%= product.description%></p>
-<p><%= product.amount%></p>
- <% if @requests.any? { |request| request.product_id == product.id && request.user_id == current_user_id } %>
+<div class="product-card">
+<p>Product name: <%= product.name%></p>
+<p>Product description: <%= product.description%></p>
+<p>Product Amount: <%= product.amount%></p>
+ <% if @requests.any? { |request| request.product_id == product.id && request.user_id == current_user_id && request.status == "pending" } %>
     <p>Status: Pending</p>
   <% else %>
     <%= link_to "Request", new_product_request_path(product.id) %>
   <% end %>
+  </div>
 
 <%end%>
-<br>
+  </div>
 
- <%= link_to "Logout", "logout",method: "get" %>
-<%= link_to "My Products", my_product_products_path %>
+<%else%>
+<p>No products</p>
+
+<%end%>
+
+</div>
+
+
 
 

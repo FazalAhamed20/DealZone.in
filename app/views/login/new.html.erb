@@ -1,4 +1,6 @@
-<h1>Login</h1>
+
+<div class="login">
+    <h1>Login</h1>
 <%= form_with url:"/login" ,method:"post",local:true do |f|%>
 <div>
     <%= f.label :email, "Email"%>
@@ -10,7 +12,11 @@
     <br>
     <%= f.text_field :password, placeholder:"Enter your password",required:true%>
 </div>
-<%=f.submit "login"%>
+<button><%=f.submit "login"%></button>
+
 <%end%>
 <p>Don't have an account</p>
-<%= link_to "signup", new_signup_path %>
+<button><%= link_to "signup", new_signup_path %></button>
+
+</div>
+

@@ -1,20 +1,46 @@
-<h1>My product</h1>
+<div>
 
-<% @products.each do |product|%>
-<p><%= product.name%></p>
-<p><%= product.description%></p>
-<p><%= product.amount%></p>
-<% if   @requests.any? {|request| request.product_id == product.id && request.status == "pending"}%>
-<%= link_to "View request", product_requests_path(product.id)%>
+
+<h1>My Products</h1>
+<button><%= link_to "Go Back", products_path %></button>
+<button><%= link_to "Add Product", new_product_path %></button>
+<button><%= link_to "Your Requested Products", requested_products_path %></button>
+
+
+
+
+<% if @products.any?%>
+<div class="product-grid">
+<% @products.each do |product| %>
+<div class="product-card">
+  <p><strong>Name:</strong> <%= product.name %></p>
+  <p><strong>Description:</strong> <%= product.description %></p>
+  <p><strong>Amount:</strong> <%= product.amount %></p>
+
+  <% if @requests.any? { |request| request.product_id == product.id && request.status == "pending" } %>
+    <%= link_to "View Requests", product_requests_path(product.id) %>
+    <br>
+    <button disabled class="button">Edit</button>
+    <button disabled class="button">Delete</button>
+    <%elsif  @requests.any? { |request| request.product_id == product.id && request.status == "accepted" } %>
+    <p class="order_accepted">Order accepted</p>
+
+  <% else %>
+    <%= link_to "Edit", edit_product_path(product.id),class: "button" %>
+    <%= link_to "Delete", product_path(product.id), 
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this product?" },class: "button" %>
+  <% end %>
+</div>
+<% end %>
+</div>
 <%else%>
-<%= link_to "Edit", edit_product_path(product.id)%>
- <%= link_to "Delete", product_path(product.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this product?" } %>
-<%end%>
+<p>No products</p>
 
 <%end%>
-<br>
-<%= link_to "Add product",new_product_path%>
-<br>
 
-<br>
-<%= link_to "Go back",products_path%>
+</div>
+
+
+
+
+

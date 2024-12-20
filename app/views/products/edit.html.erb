@@ -1,4 +1,8 @@
-<%= form_with model: @product do |f| %>
+
+
+<div class="edit_product">
+  <h1>Edit your product</h1>
+  <%= form_with model: @product do |f| %>
   <div>
     <%= f.label :name, "Product Name" %>
     <br>
@@ -21,3 +25,4 @@
     <%= f.submit "Update Product" %>
   </div>
 <% end %>
+</div>

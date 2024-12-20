@@ -1,4 +1,5 @@
-<h1>Signup</h1>
+<div class="sign_up">
+    <h1>Signup</h1>
 <%= form_with url:"/signup" ,method:"post",local:true do |f|%>
 <div>
     <%= f.label :name, "Name"%>
@@ -15,7 +16,11 @@
     <br>
     <%= f.text_field :password, placeholder:"Enter your password",required:true%>
 </div>
-<%=f.submit "signup"%>
+<button><%=f.submit "SignUp"%></button>
+
 <%end%>
 <p>Already have an account</p>
-<%= link_to "login",new_login_path %>
+<button><%= link_to "login",new_login_path %></button>
+
+</div>
+
