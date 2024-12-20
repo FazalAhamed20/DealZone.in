@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ 
   
 
 
@@ -11,11 +12,10 @@ Rails.application.routes.draw do
   collection do
     get :my_product
   end
-  member do
-    get 'edit_bargain', to: 'bargains#edit' # Action to show the bargain edit form
-    patch 'update_bargain', to: 'bargains#update' # Action to handle form submission
-  end
+  resources :requests, only: [ :new, :create, :index, :update ]
 end
+
+
 
 
 get '/logout', to: 'login#destroy'

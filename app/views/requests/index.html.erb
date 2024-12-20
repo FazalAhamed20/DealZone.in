@@ -1,0 +1,12 @@
+<h1>Requested Products</h1>
+ <p>Product name: <%=@product.name%></p>
+ <p>Actual Amount: <%=@product.amount%></p>
+ <p>Requested Amount: <%=@request.request_amount%></p>
+ <p>Requested by: <%=@user.name%></p>
+
+ <%= link_to "Accept", product_request_path(@product.id, @request.id, commit: "Accepted"), data: { turbo_method: :patch,turbo_confirm: "Are you sure you want to accept this request?" } %>
+
+ <%= link_to "Reject", product_request_path(@product.id, @request.id, commit: "Rejected"), data: { turbo_method: :patch,turbo_confirm: "Are you sure you want to accept this request?" } %>
+
+
+

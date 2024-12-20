@@ -4,7 +4,12 @@
 <p><%= product.name%></p>
 <p><%= product.description%></p>
 <p><%= product.amount%></p>
-<%= link_to "Bargain", edit_bargain_product_path(product) %>
+ <% if @requests.any? { |request| request.product_id == product.id && request.user_id == current_user_id } %>
+    <p>Status: Pending</p>
+  <% else %>
+    <%= link_to "Request", new_product_request_path(product.id) %>
+  <% end %>
+
 <%end%>
 <br>
 

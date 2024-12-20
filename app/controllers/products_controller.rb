@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.where.not(user_id: session[:user_id])
+    @products = Product.where.not(user_id: current_user_id)
+    @requests = Request.all
   end
 
   def new
@@ -9,7 +10,7 @@ class ProductsController < ApplicationController
 
   def create
    @product = Product.new(params_validate)
-   @product.user_id = session[:user_id]
+   @product.user_id = current_user_id
    if @product.save
     redirect_to my_product_products_path, notice: "Product was successfully created."
    else
@@ -20,7 +21,8 @@ class ProductsController < ApplicationController
 
   
   def my_product
-    @products = Product.where(user_id: session[:user_id])
+    @products = Product.where(user_id: current_user_id)
+    @requests = Request.all
   end
 
   def edit

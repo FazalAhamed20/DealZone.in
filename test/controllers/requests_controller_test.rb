@@ -1,13 +1,13 @@
 require "test_helper"
 
-class BargainsControllerTest < ActionDispatch::IntegrationTest
+class RequestsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
-    get bargains_new_url
+    get requests_new_url
     assert_response :success
   end
 
   test "should get create" do
-    get bargains_create_url
+    get requests_create_url
     assert_response :success
   end
 end

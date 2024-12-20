@@ -1,0 +1,13 @@
+<h1>Request for the product</h1>
+<p>Product :<%= @product.name%></p>
+<p>Description :<%= @product.description%></p>
+<p>Actual amount :<%= @product.amount%></p>
+<p>Your Price</p>
+
+<%= form_with model: [@product,@request] do |f|%>
+<%= f.label :request_amount%>
+<%= f.text_field :request_amount%>
+<%= f.submit "Request"%>
+
+<%end%>
+
