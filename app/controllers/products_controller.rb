@@ -30,6 +30,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
   def update
+    puts "helllllllllloooooooooo"
     @product = Product.find(params[:id])
     if @product.update(params_validate)
     redirect_to my_product_products_path, notice: "Product was successfully updated."

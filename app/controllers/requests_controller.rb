@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
   before_action :logged_in 
   def index
 
-    @request = Request.includes(:user, :product).find_by(product_id: params[:product_id])
+    @request = Request.includes(:user, :product).find_by(id: params[:product_id])
     # @request = Request.find_by(product_id: params[:product_id])
 
     # @product = Product.find(@request.product_id)
@@ -27,13 +27,16 @@ class RequestsController < ApplicationController
   end
 
   def update
+    puts 'rrrrrrrrr',params
   @request = Request.find(params[:id])
    if params[:commit]=="Accepted"
     @request.update(status: "accepted")
+    puts 'ppppppppppppp',@request.status
     redirect_to my_product_products_path, notice: "Accepted Successfully"
    elsif params[:commit]=="Rejected"
+    # @request.destroy
       @request.update(status: "rejected")
-    redirect_to my_product_products_path, notice: "Rejected"
+    redirect_to my_product_products_path, notice: "Rejected Successfully"
    else
       redirect_to product_requests_path(params[:product_id]), notice: "Invalid Action"
    end

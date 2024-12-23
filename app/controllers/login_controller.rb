@@ -1,5 +1,5 @@
 class LoginController < ApplicationController
- before_action :redirect_if_logged_in, only: [:new, :create]
+ before_action :redirect_if_logged_in, only: [ :new, :create ]
   def create
     user = User.find_by(email: params_validate[:email])
 
@@ -12,16 +12,14 @@ class LoginController < ApplicationController
 
       end
     else
-      redirect_to new_login_path, notice: "User not found"
+      redirect_to new_login_path, notice: "User not found,please signup"
     end
-
   end
 
   def destroy
     session.delete(:user_id)
-    
-    redirect_to new_login_path, notice: "Logged out"
 
+    redirect_to new_login_path, notice: "Logged out"
   end
 
   private
@@ -34,5 +32,4 @@ class LoginController < ApplicationController
       redirect_to products_path, notice: "Already logged in"
     end
   end
-
 end
