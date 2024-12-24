@@ -7,7 +7,12 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :amount, presence: true
 
+  private
+
   def update_function
-    puts "hello"
+    if requests.exists?(status: "accepted")
+      Rails.logger.info("hello")
+      throw(:abort)
+    end
   end
 end

@@ -6,8 +6,9 @@
     <% if @products.any? %>
         <div class="product-grid">
             <% @products.each do |product| %>
+            
                 <% user_requests = @requests.select { |request| request.product_id == product.id && request.user_id == current_user_id } %>
-                <% if user_requests.empty? || !user_requests.any? { |request| request.status == "accepted" } %>
+                <% if !@requests.any? { |request| request.product_id == product.id &&  (request.status == "accepted" || request.status == "pending") } %>
                     <div class="product-card">
                         <p>Product name: <%= product.name %></p>
                         <p>Product description: <%= product.description %></p>

@@ -14,9 +14,11 @@
           <p><strong>Amount:</strong> <%= product.amount %></p>
 
           <% product_requests = @requests.select { |request| request.product_id == product.id } %>
-
+           
           <% if (pending_request = product_requests.find { |request| request.status == "pending" }) %>
-            <%= link_to "View Requests", product_requests_path(pending_request.id)%>
+        
+            <%= link_to "View Requests", product_requests_path(pending_request)%>
+               <span class="request-count"><%= product_requests.count { |request| request.status == "pending" } %></span>
             <br>
             <button disabled class="button">Edit</button>
             <button disabled class="button">Delete</button>

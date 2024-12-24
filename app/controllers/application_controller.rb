@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user_id
+  # helper_method :current_user_id
   helper_method :logged_in
   allow_browser versions: :modern
   def current_user_id

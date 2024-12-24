@@ -14,18 +14,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_20_045657) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "bargains", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "product_id", null: false
-    t.integer "actual_amount"
-    t.integer "proposed_amount"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_bargains_on_product_id"
-    t.index ["user_id"], name: "index_bargains_on_user_id"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -55,8 +43,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_20_045657) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "bargains", "products"
-  add_foreign_key "bargains", "users"
   add_foreign_key "products", "users"
   add_foreign_key "requests", "products"
   add_foreign_key "requests", "users"

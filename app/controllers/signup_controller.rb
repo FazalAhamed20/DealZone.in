@@ -1,9 +1,10 @@
 class SignupController < ApplicationController
-  before_action :redirect_if_logged_in, only: [:new, :create]
-  def new
-    @user = User.new()
+  before_action :redirect_if_logged_in, only: [ :new, :create ]
 
+  def new
+    @signup = User.new
   end
+
   def create
     exist_user = User.find_by(email: params_validate[:email])
     if exist_user

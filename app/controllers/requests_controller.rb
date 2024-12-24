@@ -1,8 +1,9 @@
 class RequestsController < ApplicationController
   before_action :logged_in 
   def index
-
+      puts 'fndjnj',params
     @request = Request.includes(:user, :product).find_by(id: params[:product_id])
+    puts 'rrrrrrr',@request
     # @request = Request.find_by(product_id: params[:product_id])
 
     # @product = Product.find(@request.product_id)
