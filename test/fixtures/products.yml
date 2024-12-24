@@ -4,10 +4,10 @@ one:
   name: MyString
   description: MyString
   amount: 1
-  userId: one
+  user: one
 
 two:
   name: MyString
   description: MyString
   amount: 1
-  userId: two
+  user: two

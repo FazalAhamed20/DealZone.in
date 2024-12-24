@@ -1,13 +1,25 @@
 class ApplicationController < ActionController::Base
-  # helper_method :current_user_id
-  helper_method :logged_in
+  before_action :authenticate_user!
+  helper_method :current_user_id
   allow_browser versions: :modern
   def current_user_id
-    session[:user_id]
+    current_user.id
   end
-  def logged_in
-    unless session[:user_id].present?
-      redirect_to new_login_path, notice: "Please login to view products"
-    end
+  def after_sign_in_path_for(resource)
+    products_path
   end
+  def after_sign_up_path_for(resource)
+    products_path
+  end
+  protect_from_forgery with: :exception
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+       def configure_permitted_parameters
+            devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password)}
+
+            devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password)}
+       end
 end

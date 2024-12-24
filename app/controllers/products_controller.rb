@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :logged_in 
+   before_action :authenticate_user!
   def index
     @products = Product.where.not(user_id: current_user_id)
     @requests = Request.all

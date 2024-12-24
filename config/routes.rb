@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   
   resources :signup, only: [  :new, :create ]
   resources :login, only: [ :new, :create ]
