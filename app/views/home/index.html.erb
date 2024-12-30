@@ -1,9 +1,19 @@
 
 
     <div class="header_div">
- <h1 class="home_heading">Welcome to Deal Zone</h1>
+        <% if user_signed_in?%>
+         <h1 class="home_heading">Welcome to Deal Zone</h1>
+         <h2> Hello <%= @user.name%> 👋 </h2>
+ <button><%= link_to "Products",products_path%></button>
+ <button><%= link_to "My products",my_product_products_path %></button>
+
+        <%else%>
+         <h1 class="home_heading">Welcome to Deal Zone</h1>
  <button><%= link_to "Sign up",new_user_registration_path%></button>
  <button><%= link_to "Log In",new_user_session_path %></button>
+
+        <% end%>
+
 
 
 

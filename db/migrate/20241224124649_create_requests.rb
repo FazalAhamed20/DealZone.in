@@ -5,6 +5,7 @@ class CreateRequests < ActiveRecord::Migration[8.0]
       t.references :product, null: false, foreign_key: true
       t.integer :request_amount
       t.string :status
+      t.string :req_type
 
       t.timestamps
     end

@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
-  
-  resources :signup, only: [  :new, :create ]
-  resources :login, only: [ :new, :create ]
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+
 
   resources :products do
     collection do
@@ -11,10 +9,8 @@ Rails.application.routes.draw do
     resources :requests, only: [ :new, :create, :index, :update ] 
   end
 
-
 get "/requested_products", to: "requests#requested_products"
 
-get "/logout", to: "login#destroy"
   # get "/signup", to: "signup#index"
   # post "/signup", to: "signup#create"
   # get "/login", to: "login#index"

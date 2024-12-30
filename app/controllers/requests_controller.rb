@@ -1,10 +1,8 @@
 class RequestsController < ApplicationController
   before_action :authenticate_user!
   def index
-      puts 'fndjnj',params
-    @request = Request.includes(:user, :product).find_by(id: params[:product_id])
-    puts 'rrrrrrr',@request
-    # @request = Request.find_by(product_id: params[:product_id])
+    # @products = Product.includes(:user, :requests).where(id: params[:product_id])
+    @requests = Request.includes(product: :user).where(product_id:params[:product_id],requests:{status:"pending"},product:{user_id:current_user_id})
 
     # @product = Product.find(@request.product_id)
     # @user = User.find( @request.user_id)
@@ -23,29 +21,25 @@ class RequestsController < ApplicationController
     if @request.save
       redirect_to products_path, notice: "Request sent successfully"
     else
-      render :new, notice: "Request failed"
+      render :new, alert: "Request failed"
     end
   end
 
   def update
-    puts 'rrrrrrrrr',params
   @request = Request.find(params[:id])
    if params[:commit]=="Accepted"
     @request.update(status: "accepted")
-    puts 'ppppppppppppp',@request.status
     redirect_to my_product_products_path, notice: "Accepted Successfully"
    elsif params[:commit]=="Rejected"
-    # @request.destroy
       @request.update(status: "rejected")
     redirect_to my_product_products_path, notice: "Rejected Successfully"
    else
-      redirect_to product_requests_path(params[:product_id]), notice: "Invalid Action"
+      redirect_to product_requests_path(params[:product_id]), alert: "Invalid Action"
    end
   end
 
   def requested_products
     @requests = Request.includes(:product).where(user_id: current_user_id)
-  puts '............',@requests
   end
   private
 

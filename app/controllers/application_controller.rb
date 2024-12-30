@@ -1,15 +1,11 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  
   helper_method :current_user_id
-  allow_browser versions: :modern
+
+  # before_action :log_csrf_token
+ 
   def current_user_id
     current_user.id
-  end
-  def after_sign_in_path_for(resource)
-    products_path
-  end
-  def after_sign_up_path_for(resource)
-    products_path
   end
   protect_from_forgery with: :exception
 
@@ -19,7 +15,9 @@ class ApplicationController < ActionController::Base
 
        def configure_permitted_parameters
             devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password)}
-
-            devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password)}
        end
+
+      #  def log_csrf_token
+      #   puts "CSRF Token: #{session[:_csrf_token]}"
+      # end
 end
