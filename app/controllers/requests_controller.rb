@@ -1,15 +1,15 @@
 class RequestsController < ApplicationController
   before_action :authenticate_user!
   def index
-    # @products = Product.includes(:user, :requests).where(id: params[:product_id])
-    @requests = Request.includes(product: :user).where(product_id:params[:product_id],requests:{status:"pending"},product:{user_id:current_user_id})
-
+   # @products = Product.includes(:user, :requests).where(id: params[:product_id])
+   # @requests = Request.includes(product: :user).where(product_id:params[:product_id],requests:{status:"pending"},product:{user_id:current_user_id})
+   @request = Request.find_by(product_id: params[:product_id], requests: { status: "pending" })
     # @product = Product.find(@request.product_id)
     # @user = User.find( @request.user_id)
   end
   def new
     @product = Product.find(params[:product_id])
-   
+
     @request = Request.new
   end
 

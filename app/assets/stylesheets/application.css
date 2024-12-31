@@ -54,10 +54,15 @@ body{
     text-align: center;
     color: white;
   }
-  .higlight{
+  .accept{
     color: green;
   }
-
+  .reject{
+    color: red;
+  }
+  .pending{
+    color: gold;
+  }
   .order_accepted{
     color: green;
   }

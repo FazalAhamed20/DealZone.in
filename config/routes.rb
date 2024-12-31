@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :requests, only: [ :new, :create, :index, :update ] 
   end
 
+
+
+
 get "/requested_products", to: "requests#requested_products"
 
   # get "/signup", to: "signup#index"
@@ -18,4 +21,6 @@ get "/requested_products", to: "requests#requested_products"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   root "home#index"
+
+  get '*unmatched_route', to: 'main#not_found'
 end

@@ -9,7 +9,14 @@
 <p>Product Name: <%= request.product.name%> </p>
 <p>Product Amount: <%= request.product.amount%> </p>
 <p>Your bid: <%= request.request_amount%></p>
-<p class="higlight">Status: <%= request.status%></p>
+<% if request.status == "accepted"%>
+<p> Status: <span class = "accept"><%= request.status%></span></p>
+<%elsif request.status == "rejected"%>
+<p> Status: <span class = "reject"><%= request.status%></span></p>
+<%else%>
+<p> Status: <span class = "pending"><%= request.status%></span></p>
+<%end%>
+
 </div>
 <%end%>
 </div>
